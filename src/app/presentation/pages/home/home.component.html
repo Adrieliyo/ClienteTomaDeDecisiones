@@ -1,0 +1,62 @@
+<div class="p-8 min-h-[90vh]">
+
+    <!-- Title -->
+    <div class="flex flex-col justify-center items-center">
+        <h1 class="font-semibold text-gray-800 text-4xl">Herramientas online para los amantes de los algoritmos de DSS
+        </h1>
+        <p class="p-1 text-2xl text-gray-500">Selecciona una de las herramientas a continuación para realizar pruebas
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mt-8 w-[38%] mx-auto">
+        <!-- Card 1 -->
+        <div [routerLink]="['/simplex']"
+            class="bg-white rounded-lg shadow-md p-6 transform transition-all duration-300 hover:scale-105 hover:bg-gray-50 border border-gray-300 h-[17rem]">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="h-10 w-10 mt-2 text-red-600"
+                fill="currentColor">
+                <path
+                    d="M320-80h200v-160H240v80q0 33 23.5 56.5T320-80Zm280 0h200q33 0 56.5-23.5T880-160v-80H600v160ZM80-240v-560q0-33 23.5-56.5T160-880h560v80H160v560H80Zm160-80h280v-160H240v160Zm360 0h280v-160H600v160ZM240-560h640v-80q0-33-23.5-56.5T800-720H320q-33 0-56.5 23.5T240-640v80Z" />
+            </svg>
+            <h3 class="text-xl font-semibold text-gray-800 mt-4">Método Simplex</h3>
+            <p class="text-gray-600 mt-2">Calcula el método simplex de forma sencilla dentro de este apartado</p>
+        </div>
+        <!-- Card 2 -->
+        <div [routerLink]="['/saw']"
+            class="bg-white rounded-lg shadow-md p-6 transform transition-all duration-300 hover:scale-105 hover:bg-gray-50 border border-gray-300 h-[17rem]">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="h-12 w-12 mt-2 text-blue-600"
+                fill="currentColor">
+                <path
+                    d="M80-320v-80h80v80H80Zm0-160v-80h80v80H80Zm0-160v-80h80v80H80Zm160 320v-80h160v80H240Zm0-160v-80h520v80H240Zm0-160v-80h520v80H240Zm398 480L468-330l57-57 113 113 226-226 56 58-282 282Z" />
+            </svg>
+            <h3 class="text-xl font-semibold text-gray-800 mt-4">Método SAW</h3>
+            <p class="text-gray-600 mt-2">Calcula el método de ponderación simple aditiva de forma sencilla dentro de
+                este apartado</p>
+        </div>
+        <!-- Card 3 -->
+        <div [routerLink]="['/data-mining']"
+            class="bg-white rounded-lg shadow-md p-6 transform transition-all duration-300 hover:scale-105 hover:bg-gray-50 border border-gray-300 h-[17rem]">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="h-12 w-12 mt-2 text-orange-600"
+                fill="currentColor">
+                <path
+                    d="m105-399-65-47 200-320 120 140 160-260 120 180 135-214 65 47-198 314-119-179-152 247-121-141-145 233Zm475 159q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29 71q0 42 29 71t71 29ZM784-80 676-188q-21 14-45.5 21t-50.5 7q-75 0-127.5-52.5T400-340q0-75 52.5-127.5T580-520q75 0 127.5 52.5T760-340q0 26-7 50.5T732-244l108 108-56 56Z" />
+            </svg>
+            <h3 class="text-xl font-semibold text-gray-800 mt-4">Minería de datos</h3>
+            <p class="text-gray-600 mt-2">Descubre si sobrevivirías la titanic dentro de este apartado. <br> ¿Lo podrás
+                lograr?</p>
+        </div>
+        <!-- Card 4 -->
+        <div [routerLink]="['/perceptron']"
+            class="bg-white rounded-lg shadow-md p-6 transform transition-all duration-300 hover:scale-105 hover:bg-gray-50 border border-gray-300 h-[17rem]">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="h-12 w-12 mt-2 text-red-400"
+                fill="currentColor">
+                <path
+                    d="M323-160q-11 0-20.5-5.5T288-181l-78-139h58l40 80h92v-40h-68l-40-80H188l-57-100q-2-5-3.5-10t-1.5-10q0-4 5-20l57-100h104l40-80h68v-40h-92l-40 80h-58l78-139q5-10 14.5-15.5T323-800h97q17 0 28.5 11.5T460-760v160h-60l-40 40h100v120h-88l-40-80h-92l-40 40h108l40 80h112v200q0 17-11.5 28.5T420-160h-97Zm237 0q-33 0-56.5-23.5T480-240q0-23 11-40.5t29-28.5v-342q-18-11-29-28.5T480-720q0-33 23.5-56.5T560-800q33 0 56.5 23.5T640-720q0 23-11 40.5T600-651v101l80-48q0-34 23.5-58t56.5-24q33 0 56.5 23.5T840-600q0 33-23.5 56.5T760-520q-11 0-20.5-2.5T721-530l-91 55 101 80q7-3 14-4t15-1q33 0 56.5 23.5T840-320q0 33-23.5 56.5T760-240q-37 0-60.5-28T681-332l-81-65v89q18 11 28.5 28.5T639-240q0 33-23 56.5T560-160Z" />
+            </svg>
+            <h3 class="text-xl font-semibold text-gray-800 mt-4">Perceptrón Simple para Clasificación</h3>
+            <p class="text-gray-600 mt-2">Modelo de perceptrón simple para clasificación listo para realizar cualquier
+                tipo de clasificación</p>
+        </div>
+    </div>
+
+
+</div>
