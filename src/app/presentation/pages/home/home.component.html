@@ -2,16 +2,17 @@
 
     <!-- Title -->
     <div class="flex flex-col justify-center items-center">
-        <h1 class="font-semibold text-gray-800 text-4xl">Herramientas online para los amantes de los algoritmos de DSS
+        <h1 class="font-semibold text-gray-800 text-4xl">
+            Herramientas online para los amantes de los algoritmos de DSS
         </h1>
         <p class="p-1 text-2xl text-gray-500">Selecciona una de las herramientas a continuación para realizar pruebas
         </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mt-8 w-[38%] mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mt-8 w-full md:w-[75%] lg:w-[45%] mx-auto px-4">
         <!-- Card 1 -->
         <div [routerLink]="['/simplex']"
-            class="bg-white rounded-lg shadow-md p-6 transform transition-all duration-300 hover:scale-105 hover:bg-gray-50 border border-gray-300 h-[17rem]">
+            class="bg-white rounded-lg shadow-md p-6 transform transition-all duration-300 hover:scale-105 hover:bg-gray-50 border border-gray-300 min-h-[17rem]">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="h-10 w-10 mt-2 text-red-600"
                 fill="currentColor">
                 <path
@@ -22,7 +23,7 @@
         </div>
         <!-- Card 2 -->
         <div [routerLink]="['/saw']"
-            class="bg-white rounded-lg shadow-md p-6 transform transition-all duration-300 hover:scale-105 hover:bg-gray-50 border border-gray-300 h-[17rem]">
+            class="bg-white rounded-lg shadow-md p-6 transform transition-all duration-300 hover:scale-105 hover:bg-gray-50 border border-gray-300 min-h-[17rem]">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="h-12 w-12 mt-2 text-blue-600"
                 fill="currentColor">
                 <path
@@ -34,7 +35,7 @@
         </div>
         <!-- Card 3 -->
         <div [routerLink]="['/data-mining']"
-            class="bg-white rounded-lg shadow-md p-6 transform transition-all duration-300 hover:scale-105 hover:bg-gray-50 border border-gray-300 h-[17rem]">
+            class="bg-white rounded-lg shadow-md p-6 transform transition-all duration-300 hover:scale-105 hover:bg-gray-50 border border-gray-300 min-h-[17rem]">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="h-12 w-12 mt-2 text-orange-600"
                 fill="currentColor">
                 <path
@@ -46,7 +47,7 @@
         </div>
         <!-- Card 4 -->
         <div [routerLink]="['/perceptron']"
-            class="bg-white rounded-lg shadow-md p-6 transform transition-all duration-300 hover:scale-105 hover:bg-gray-50 border border-gray-300 h-[17rem]">
+            class="bg-white rounded-lg shadow-md p-6 transform transition-all duration-300 hover:scale-105 hover:bg-gray-50 border border-gray-300 min-h-[17rem]">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="h-12 w-12 mt-2 text-red-400"
                 fill="currentColor">
                 <path
