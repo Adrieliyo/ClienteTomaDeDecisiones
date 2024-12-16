@@ -28,10 +28,18 @@ interface Objective {
   styleUrl: './simplex.component.css'
 })
 export class SimplexComponent {
+  showResults = false;
+  isLoading = false;
+
   selectedFile: File | null = null;
 
   inputMethod: 'manual' | 'file' = 'manual';
 
+  setInputMethod(method: 'manual' | 'file') {
+    this.inputMethod = method;
+    this.showResults = false; // Ocultar resultados cuando se cambia el método de entrada
+  }
+  
   objective: Objective = {
     type: 'max',
     variables: [{ coefficient: '', name: 'x1' }]
@@ -112,11 +120,16 @@ private readCSVFile(file: File) {
     reader.readAsText(file);
 }
 
-  onSolve() {
-    // Aquí iría la lógica para resolver el método simplex
+onSolve() {
+  this.isLoading = true;
+  // Simulate API call
+  setTimeout(() => {
+    this.showResults = true;
+    this.isLoading = false;
     console.log('Resolviendo simplex...', {
       objective: this.objective,
       constraints: this.constraints
     });
-  }
+  }, 1000);
+}
 }
