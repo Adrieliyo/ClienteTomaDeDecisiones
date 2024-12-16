@@ -1,5 +1,5 @@
 <div class="p-8 min-h-[90vh]">
-    <app-breadcrumbs ></app-breadcrumbs>
+    <app-breadcrumbs></app-breadcrumbs>
     <!-- Title -->
     <div class="flex flex-col justify-center items-center">
         <h1 class="font-semibold text-gray-800 text-4xl">
@@ -10,6 +10,175 @@
         </p>
     </div>
 
+    <!-- Simplex Input Form -->
+    <div class="mt-8 bg-white rounded-lg shadow-md p-6 max-w-4xl mx-auto">
+
+        <!-- Input Method Selection -->
+        <div class="mb-6">
+            <h3 class="text-lg font-semibold mb-4">Método de entrada</h3>
+            <div class="flex space-x-6">
+                <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="radio" [(ngModel)]="inputMethod" value="manual"
+                        class="text-emerald-600 focus:ring-emerald-500">
+                    <span class="text-gray-700">Entrada manual</span>
+                </label>
+                <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="radio" [(ngModel)]="inputMethod" value="file"
+                        class="text-emerald-600 focus:ring-emerald-500">
+                    <span class="text-gray-700">Cargar archivo</span>
+                </label>
+            </div>
+        </div>
+
+
+        
+        @if (inputMethod === 'manual') {
+            <div class="border-t-2 pt-6">
+                <!-- Función Objetivo -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-2">Función Objetivo</h3>
+                    <div class="flex items-center space-x-2">
+                        <select class="border rounded p-2" [(ngModel)]="objective.type">
+                            <option value="max">MAX</option>
+                            <option value="min">MIN</option>
+                        </select>
+                        <span class="text-lg">Z = </span>
+                        <ng-container *ngFor="let variable of objective.variables; let i = index">
+                            <div class="flex items-center">
+                                <span *ngIf="i > 0" class="mx-1">+</span>
+                                <input type="number" class="border rounded w-20 p-2" [(ngModel)]="variable.coefficient"
+                                    placeholder="0" />
+                                <span class="ml-1">{{variable.name}}</span>
+                                <button *ngIf="objective.variables.length > 1" (click)="removeVariable(i)"
+                                    class="ml-2 text-red-600 hover:text-red-800" title="Eliminar variable">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <line x1="8" y1="12" x2="16" y2="12" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                        </ng-container>
+                        <button (click)="addVariable()" class="ml-2 text-emerald-600 hover:text-emerald-800"
+                            title="Agregar variable">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="12" y1="8" x2="12" y2="16" />
+                                <line x1="8" y1="12" x2="16" y2="12" />
+                            </svg>
+                        </button>
+
+                    </div>
+                </div>
+
+                <!-- Restricciones -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Restricciones</h3>
+                    <div class="space-y-4">
+                        <div *ngFor="let constraint of constraints; let constraintIndex = index"
+                            class="flex items-center space-x-2">
+                            <ng-container *ngFor="let variable of constraint.variables; let varIndex = index">
+                                <div class="flex items-center">
+                                    <span *ngIf="varIndex > 0" class="mx-1">+</span>
+                                    <input type="number" class="border rounded w-20 p-2" [(ngModel)]="variable.coefficient"
+                                        placeholder="0" />
+                                    <span class="ml-1">{{variable.name}}</span>
+                                </div>
+                            </ng-container>
+                            <select class="border rounded p-2" [(ngModel)]="constraint.inequality">
+                                <option value="<=">≤</option>
+                                <option value=">=">≥</option>
+                                <option value="=">=</option>
+                            </select>
+                            <input type="number" class="border rounded w-20 p-2" [(ngModel)]="constraint.rhs" placeholder="0" />
+                            <button (click)="removeConstraint(constraintIndex)" class="text-red-600 hover:text-red-800"
+                                title="Eliminar restricción">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="8" y1="12" x2="16" y2="12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <button (click)="addConstraint()" class="mt-4 flex items-center text-emerald-600 hover:text-emerald-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="16" />
+                            <line x1="8" y1="12" x2="16" y2="12" />
+                        </svg>
+                        Agregar restricción
+                    </button>
+                </div>
+
+                <button (click)="onSolve()"
+                    class="mt-6 bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 flex items-center">
+                    Resolver
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 w-4 h-4" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                </button>
+            </div>
+            
+        }
+        
+        @if (inputMethod === 'file') {
+            <!-- File Upload Section -->
+            <div class="mt-6 mb-6 border-t-2 pt-6">
+                <h3 class="text-lg font-semibold mb-2">Cargar datos desde archivo</h3>
+                <div class="flex items-center space-x-4">
+                    <label
+                        class="relative cursor-pointer bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg transition-colors duration-300">
+                        <span>Seleccionar CSV</span>
+                        <input type="file" accept=".csv" class="hidden" (change)="onFileSelected($event)">
+                    </label>
+                    <span *ngIf="selectedFile" class="text-gray-600">
+                        Archivo seleccionado: {{ selectedFile.name }}
+                    </span>
+                </div>
+                <p class="text-sm text-gray-500 mt-2">
+                    Formato: CSV con columnas para coeficientes y restricciones
+                </p>
+            </div>
+        }
+    </div>
+
+    <!-- Results Section -->
+    <div class="mt-8 bg-white rounded-lg shadow-md p-6 max-w-4xl mx-auto">
+        <h3 class="text-lg font-semibold mb-4">Resultados</h3>
+
+        <!-- Solution Status -->
+        <div class="mb-4">
+            <span class="text-emerald-600 font-medium">Estado: </span>
+            <span class="text-gray-700">Solución Óptima Encontrada</span>
+        </div>
+
+        <!-- Optimal Value -->
+        <div class="mb-4">
+            <span class="text-emerald-600 font-medium">Valor Óptimo: </span>
+            <span class="text-gray-700">Z = 150</span>
+        </div>
+
+        <!-- Variables -->
+        <div class="mb-4">
+            <span class="text-emerald-600 font-medium">Variables: </span>
+            <div class="ml-4 mt-2 space-y-2">
+                <div class="text-gray-700">x₁ = 30</div>
+                <div class="text-gray-700">x₂ = 40</div>
+                <div class="text-gray-700">x₃ = 20</div>
+            </div>
+        </div>
+
+        <!-- Iterations -->
+        <div>
+            <span class="text-emerald-600 font-medium">Iteraciones realizadas: </span>
+            <span class="text-gray-700">3</span>
+        </div>
+    </div>
 
 </div>
-
